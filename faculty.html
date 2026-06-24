@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Portal | EasyReport</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container animate-fade-in">
+        <nav>
+            <a href="index.html" class="logo">
+                <span class="logo-icon">📄</span> EasyReport
+            </a>
+            <div class="nav-links">
+                <a href="student.html">Student Portal</a>
+                <a href="faculty.html" class="active">Faculty Portal</a>
+            </div>
+        </nav>
+
+        <header class="mb-4" style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <h1>Faculty Dashboard</h1>
+                <p>Manage assignments, set rules, and review submissions.</p>
+            </div>
+            <button class="btn btn-primary" onclick="openCreateModal()">+ Create Assignment</button>
+        </header>
+
+        <div id="faculty-assignments-list" class="grid-2">
+            <!-- Faculty assignments and submissions loaded here -->
+        </div>
+    </div>
+
+    <!-- Create Assignment Modal -->
+    <div id="create-modal" class="modal-overlay hidden">
+        <div class="modal" style="max-height: 90vh; overflow-y: auto;">
+            <div class="modal-header">
+                <h2>Create Assignment</h2>
+                <button class="close-btn" onclick="closeCreateModal()">&times;</button>
+            </div>
+            <form id="create-form">
+                <div class="form-group">
+                    <label for="subject">Subject / Assignment Name</label>
+                    <input type="text" id="subject" required placeholder="e.g. Software Engineering Mini Project">
+                </div>
+                <div class="form-group">
+                    <label for="rules">Rules & Guidelines</label>
+                    <textarea id="rules" required placeholder="- Times New Roman, Size 12&#n- Left aligned sub-sections&#n- New page for chapters"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="assignment-type">Type</label>
+                    <select id="assignment-type" onchange="toggleGroupMembers()">
+                        <option value="Individual">Individual</option>
+                        <option value="Group">Group</option>
+                    </select>
+                </div>
+                <div class="form-group hidden" id="max-members-group">
+                    <label for="max-members">Max Members</label>
+                    <input type="number" id="max-members" min="2" max="10" value="4">
+                </div>
+                <div class="form-group">
+                    <label for="deadline">Deadline</label>
+                    <input type="date" id="deadline" required>
+                </div>
+                <div class="form-group">
+                    <label for="template-file">Example Template (Optional)</label>
+                    <input type="file" id="template-file">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%">Create Assignment</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Review Modal -->
+    <div id="review-modal" class="modal-overlay hidden">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Review Submission</h2>
+                <button class="close-btn" onclick="closeReviewModal()">&times;</button>
+            </div>
+            <form id="review-form">
+                <input type="hidden" id="review-submission-id">
+                <div class="form-group">
+                    <label for="review-status">Status</label>
+                    <select id="review-status" required>
+                        <option value="Correct">Correct (Approved)</option>
+                        <option value="Reiterate">Reiterate (Needs Changes)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="review-feedback">Feedback / Suggested Changes</label>
+                    <textarea id="review-feedback" placeholder="Leave comments for the student..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%">Submit Review</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/store.js"></script>
+    <script src="js/faculty.js"></script>
+</body>
+</html>
