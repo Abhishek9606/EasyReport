@@ -40,9 +40,9 @@ function renderFacultySubmissions(assignmentId) {
 
     return submissions.map(sub => `
         <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 8px; margin-top: 0.5rem;">
-            <p style="margin-bottom: 0.25rem;"><strong>Students:</strong> ${sub.studentNames}</p>
-            <p style="margin-bottom: 0.5rem; font-size: 0.875rem; color: var(--text-secondary);"><strong>USN:</strong> ${sub.usns}</p>
-            <p style="margin-bottom: 0.5rem; font-size: 0.875rem;"><a href="#" onclick="alert('Simulated file download: ${sub.fileName}')">📄 ${sub.fileName}</a></p>
+            <p style="margin-bottom: 0.25rem; overflow-wrap: anywhere; word-break: break-word;"><strong>Students:</strong> ${sub.studentNames}</p>
+            <p style="margin-bottom: 0.5rem; font-size: 0.875rem; color: var(--text-secondary); overflow-wrap: anywhere; word-break: break-word;"><strong>USN:</strong> ${sub.usns}</p>
+            <p style="margin-bottom: 0.5rem; font-size: 0.875rem; overflow-wrap: anywhere; word-break: break-word;"><a href="#" onclick="alert('Simulated file download: ${sub.fileName}')">📄 ${sub.fileName}</a></p>
             
             <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem;">
                 <span class="badge ${sub.status === 'Correct' ? 'badge-success' : (sub.status === 'Reiterate' ? 'badge-warning' : 'badge-info')}">${sub.status}</span>

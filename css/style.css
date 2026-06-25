@@ -76,6 +76,16 @@ p {
     margin-bottom: 1.5rem;
 }
 
+/* Page Header */
+.page-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
 /* Navbar */
 nav {
     display: flex;
