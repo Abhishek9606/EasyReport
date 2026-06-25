@@ -26,7 +26,7 @@ function loadAssignments() {
                 <h4 class="mt-4 mb-2">Rules:</h4>
                 <div class="rules-list">${assignment.rules.replace(/\n/g, '<br>')}</div>
 
-                ${assignment.templateName ? `<div class="mt-4"><a href="#" class="btn btn-outline" style="font-size: 0.875rem" onclick="alert('Template download simulated!')">⬇️ Download Template: ${assignment.templateName}</a></div>` : ''}
+                ${assignment.templateName ? `<div class="mt-4"><a href="#" class="btn btn-outline" style="font-size: 0.875rem; white-space: normal; height: auto; text-align: left; word-break: break-word; overflow-wrap: anywhere;" onclick="alert('Template download simulated!')">⬇️ Download Template: ${assignment.templateName}</a></div>` : ''}
                 
                 <h4 class="mt-4 mb-2">Your Submissions:</h4>
                 ${renderSubmissions(assignment.id)}
@@ -70,6 +70,16 @@ function handleUpload(e) {
     const fileInput = document.getElementById('report-file');
     
     if (!fileInput.files.length) return;
+
+    const assignment = store.getAssignments().find(a => a.id === assignmentId);
+    if (assignment && assignment.allowedFileTypes && assignment.allowedFileTypes.length > 0) {
+        const fileName = fileInput.files[0].name;
+        const fileExt = '.' + fileName.split('.').pop().toLowerCase();
+        if (!assignment.allowedFileTypes.includes(fileExt)) {
+            alert('THE FILE TYPE ISNT ACCEPTED PLEASE TRY AGAIN');
+            return;
+        }
+    }
 
     store.addSubmission({
         assignmentId,

@@ -82,6 +82,8 @@ function handleCreateAssignment(e) {
     const maxMembers = document.getElementById('max-members').value;
     const deadline = document.getElementById('deadline').value;
     const templateFile = document.getElementById('template-file').files[0];
+    
+    const allowedFileTypes = Array.from(document.querySelectorAll('input[name="file-types"]:checked')).map(cb => cb.value);
 
     store.addAssignment({
         subject,
@@ -89,7 +91,8 @@ function handleCreateAssignment(e) {
         type,
         maxMembers: type === 'Group' ? maxMembers : 1,
         deadline,
-        templateName: templateFile ? templateFile.name : null
+        templateName: templateFile ? templateFile.name : null,
+        allowedFileTypes
     });
 
     closeCreateModal();
