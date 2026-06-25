@@ -157,6 +157,17 @@ nav {
     transform: scale(1.02);
 }
 
+@media (max-width: 480px) {
+    .btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+    }
+    
+    .nav-links {
+        gap: 0.5rem;
+    }
+}
+
 .btn-outline {
     background: transparent;
     color: var(--text-primary);
